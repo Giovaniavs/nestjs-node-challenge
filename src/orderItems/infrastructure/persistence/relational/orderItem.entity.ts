@@ -10,6 +10,7 @@ import {
 import { EntityRelationalHelper } from 'src/utils/relational-entity-helper';
 import { OrdersEnum } from 'src/orders/orders.enum';
 import { Order } from 'src/orders/infrastructure/persistence/relational/order.entity';
+import { Product } from 'src/products/infrastructure/persistence/relational/entities/product.entity';
 
 @Entity()
 export class OrderItem extends EntityRelationalHelper {
@@ -45,4 +46,9 @@ export class OrderItem extends EntityRelationalHelper {
     eager: true,
   })
   order?: Order;
+
+  @ManyToOne(() => Product, {
+    eager: true,
+  })
+  product?: Product;
 }
