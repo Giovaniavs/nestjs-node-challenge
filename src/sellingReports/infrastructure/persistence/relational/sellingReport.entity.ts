@@ -8,8 +8,8 @@ import { EntityRelationalHelper } from 'src/utils/relational-entity-helper';
 
 @Entity()
 export class SellingReport extends EntityRelationalHelper {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @CreateDateColumn()
   period: Date;

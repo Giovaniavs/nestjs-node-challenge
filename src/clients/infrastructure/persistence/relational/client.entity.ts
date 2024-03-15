@@ -9,8 +9,8 @@ import { EntityRelationalHelper } from 'src/utils/relational-entity-helper';
 
 @Entity()
 export class Client extends EntityRelationalHelper {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;

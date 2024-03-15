@@ -14,8 +14,8 @@ import { Product } from 'src/products/infrastructure/persistence/relational/enti
 
 @Entity()
 export class OrderItem extends EntityRelationalHelper {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({
     type: 'enum',

@@ -11,8 +11,8 @@ import { Client } from 'src/clients/infrastructure/persistence/relational/client
 
 @Entity()
 export class Order extends EntityRelationalHelper {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({
     type: 'enum',
