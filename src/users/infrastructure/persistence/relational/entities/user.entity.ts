@@ -80,7 +80,9 @@ export class UserEntity extends EntityRelationalHelper implements User {
   })
   status?: StatusEntity;
 
-  @OneToOne(() => Client)
+  @OneToOne(() => Client, {
+    eager: true,
+  })
   @JoinColumn()
   client: Client;
 
