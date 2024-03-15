@@ -4,10 +4,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { EntityRelationalHelper } from 'src/utils/relational-entity-helper';
 import { OrdersEnum } from 'src/orders/orders.enum';
+import { Order } from 'src/orders/infrastructure/persistence/relational/order.entity';
 
 @Entity()
 export class OrderItem extends EntityRelationalHelper {
@@ -38,4 +40,9 @@ export class OrderItem extends EntityRelationalHelper {
   calculateTotalPrice() {
     this.totalPrice = this.amount * this.priceByUnity;
   }
+
+  @ManyToOne(() => Order, {
+    eager: true,
+  })
+  order?: Order;
 }
