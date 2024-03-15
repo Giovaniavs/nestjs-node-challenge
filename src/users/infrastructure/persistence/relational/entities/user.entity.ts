@@ -8,6 +8,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 import { RoleEntity } from '../../../../../roles/infrastructure/persistence/relational/entities/role.entity';
 import { StatusEntity } from '../../../../../statuses/infrastructure/persistence/relational/entities/status.entity';
@@ -19,6 +21,7 @@ import { AuthProvidersEnum } from 'src/auth/auth-providers.enum';
 // in your project and return an ORM entity directly in response.
 import { Exclude, Expose } from 'class-transformer';
 import { User } from '../../../../domain/user';
+import { Client } from 'src/clients/infrastructure/persistence/relational/client.entity';
 
 @Entity({
   name: 'user',
@@ -76,6 +79,10 @@ export class UserEntity extends EntityRelationalHelper implements User {
     eager: true,
   })
   status?: StatusEntity;
+
+  @OneToOne(() => Client)
+  @JoinColumn()
+  client: Client;
 
   @CreateDateColumn()
   createdAt: Date;
