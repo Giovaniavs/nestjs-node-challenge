@@ -6,14 +6,14 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { EntityRelationalHelper } from 'src/utils/relational-entity-helper';
+import { Client } from 'src/clients/domain/client';
 
-@Entity()
-export class Client extends EntityRelationalHelper {
+@Entity({
+  name: 'client',
+})
+export class ClientEntity extends EntityRelationalHelper implements Client {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
-  @Column()
-  name: string;
 
   @Column()
   contact: string;

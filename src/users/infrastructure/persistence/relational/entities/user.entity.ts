@@ -21,7 +21,7 @@ import { AuthProvidersEnum } from 'src/auth/auth-providers.enum';
 // in your project and return an ORM entity directly in response.
 import { Exclude, Expose } from 'class-transformer';
 import { User } from '../../../../domain/user';
-import { Client } from 'src/clients/infrastructure/persistence/relational/client.entity';
+import { ClientEntity } from 'src/clients/infrastructure/persistence/relational/entities/client.entity';
 
 @Entity({
   name: 'user',
@@ -80,11 +80,11 @@ export class UserEntity extends EntityRelationalHelper implements User {
   })
   status?: StatusEntity;
 
-  @OneToOne(() => Client, {
+  @OneToOne(() => ClientEntity, {
     eager: true,
   })
   @JoinColumn()
-  client: Client;
+  client: ClientEntity;
 
   @CreateDateColumn()
   createdAt: Date;

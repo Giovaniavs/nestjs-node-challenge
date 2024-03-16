@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { EntityRelationalHelper } from 'src/utils/relational-entity-helper';
 import { OrdersEnum } from 'src/orders/orders.enum';
-import { Client } from 'src/clients/infrastructure/persistence/relational/client.entity';
+import { ClientEntity } from 'src/clients/infrastructure/persistence/relational/entities/client.entity';
 
 @Entity()
 export class Order extends EntityRelationalHelper {
@@ -20,10 +20,10 @@ export class Order extends EntityRelationalHelper {
   })
   orderStatus: OrdersEnum;
 
-  @ManyToOne(() => Client, {
+  @ManyToOne(() => ClientEntity, {
     eager: true,
   })
-  client?: Client;
+  client?: ClientEntity;
 
   @CreateDateColumn()
   orderCreateDate: Date;
