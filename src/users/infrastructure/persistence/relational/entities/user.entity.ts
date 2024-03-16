@@ -84,7 +84,7 @@ export class UserEntity extends EntityRelationalHelper implements User {
     eager: true,
   })
   @JoinColumn()
-  client: ClientEntity;
+  client?: ClientEntity | null;
 
   @CreateDateColumn()
   createdAt: Date;

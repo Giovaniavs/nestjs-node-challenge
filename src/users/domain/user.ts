@@ -1,4 +1,5 @@
 import { Exclude, Expose } from 'class-transformer';
+import { Client } from 'src/clients/domain/client';
 import { FileType } from 'src/files/domain/file';
 import { Role } from 'src/roles/domain/role';
 import { Status } from 'src/statuses/domain/status';
@@ -24,6 +25,7 @@ export class User {
   lastName: string | null;
   photo?: FileType | null;
   role?: Role | null;
+  client?: Client | null;
   status?: Status;
   createdAt: Date;
   updatedAt: Date;
