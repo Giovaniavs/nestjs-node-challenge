@@ -1,8 +1,16 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ClientRegisterDto } from './dto/client-register.dto';
 import { Client } from './domain/client';
 import { ClientsService } from './clients.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Clients')
 @Controller({
@@ -12,7 +20,8 @@ import { ClientsService } from './clients.service';
 export class ClientsController {
   constructor(private readonly clientsService: ClientsService) {}
 
-  @Post('clients/register')
+  @Post('register')
+  @UseGuards(AuthGuard('jwt'))
   @HttpCode(HttpStatus.CREATED)
   async register(
     @Body() clientRegisterDto: ClientRegisterDto,
