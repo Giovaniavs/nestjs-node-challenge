@@ -1,3 +1,4 @@
+import { UserEntity } from 'src/users/infrastructure/persistence/relational/entities/user.entity';
 import { ClientEntity } from '../entities/client.entity';
 import { Client } from 'src/clients/domain/client';
 
@@ -7,6 +8,7 @@ export class ClientMapper {
     client.id = raw.id;
     client.contact = raw.contact;
     client.address = raw.address;
+    client.user = raw.user;
     client.createdAt = raw.createdAt;
     client.updatedAt = raw.createdAt;
 
@@ -14,9 +16,18 @@ export class ClientMapper {
   }
 
   static toPersistence(client: Client): ClientEntity {
+    let user: UserEntity | undefined = undefined;
+
     const clientEntity = new ClientEntity();
     if (client.id && typeof client.id === 'string') {
       clientEntity.id = client.id;
+    }
+
+    if (client.user) {
+      user = new UserEntity();
+      user.firstName = client.user.firstName;
+      user.lastName = client.user.lastName;
+      user.email = client.user.email;
     }
 
     clientEntity.contact = client.contact;
