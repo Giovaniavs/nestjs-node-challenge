@@ -23,9 +23,7 @@ export class ClientEntity extends EntityRelationalHelper implements Client {
   @Column('text')
   address: string;
 
-  @OneToOne(() => UserEntity, {
-    eager: true,
-  })
+  @OneToOne(() => UserEntity, (user) => user.client)
   user?: UserEntity | null;
 
   @CreateDateColumn()

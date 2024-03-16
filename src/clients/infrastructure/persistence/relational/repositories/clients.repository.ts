@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ClientsRepository } from '../../clients.repository';
-import { FindOptionsWhere, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { ClientEntity } from '../entities/client.entity';
 import { Client } from 'src/clients/domain/client';
 import { ClientMapper } from '../mappers/client.mapper';
@@ -26,9 +26,13 @@ export class ClientsRelationalRepository implements ClientsRepository {
   async findOne(
     fields: EntityCondition<Client>,
   ): Promise<NullableType<Client>> {
-    const entity = await this.usersRepository.findOne({
-      where: fields as FindOptionsWhere<ClientEntity>,
-    });
+    const entity = await this.usersRepository
+      .createQueryBuilder('client')
+      .where({
+        id: fields.id,
+      })
+      .leftJoinAndSelect('client.user', 'user')
+      .getOne();
 
     return entity ? ClientMapper.toDomain(entity) : null;
   }

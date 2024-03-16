@@ -33,6 +33,7 @@ export class ClientMapper {
     clientEntity.contact = client.contact;
     clientEntity.address = client.address;
     clientEntity.createdAt = client.createdAt;
+    clientEntity.user = user;
     clientEntity.updatedAt = client.updatedAt;
     return clientEntity;
   }
