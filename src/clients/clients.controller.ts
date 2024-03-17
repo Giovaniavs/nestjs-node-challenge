@@ -8,6 +8,7 @@ import {
   UseGuards,
   SerializeOptions,
   Get,
+  Delete,
 } from '@nestjs/common';
 import { ApiTags, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
 import { ClientRegisterDto } from './dto/client-register.dto';
@@ -50,5 +51,19 @@ export class ClientsController {
   })
   findOne(@Param('id') id: Client['id']): Promise<NullableType<Client>> {
     return this.clientsService.findOne({ id });
+  }
+
+  @SerializeOptions({
+    groups: ['admin'],
+  })
+  @Delete(':id')
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+  })
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(@Param('id') id: Client['id']): Promise<void> {
+    return this.clientsService.delete(id);
   }
 }

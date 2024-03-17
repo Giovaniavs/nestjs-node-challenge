@@ -10,4 +10,6 @@ export abstract class ClientsRepository {
   abstract findOne(
     fields: EntityCondition<Client>,
   ): Promise<NullableType<Client>>;
+
+  abstract delete(id: Client['id']): Promise<void>;
 }

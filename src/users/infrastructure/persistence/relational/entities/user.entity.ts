@@ -82,6 +82,7 @@ export class UserEntity extends EntityRelationalHelper implements User {
 
   @OneToOne(() => ClientEntity, (client) => client.user, {
     eager: true,
+    onDelete: 'CASCADE',
   })
   @JoinColumn()
   client?: ClientEntity | null;

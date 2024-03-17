@@ -12,13 +12,13 @@ import { NullableType } from 'src/utils/types/nullable.type';
 export class ClientsRelationalRepository implements ClientsRepository {
   constructor(
     @InjectRepository(ClientEntity)
-    private readonly usersRepository: Repository<ClientEntity>,
+    private readonly clientsRepository: Repository<ClientEntity>,
   ) {}
 
   async create(data: Client): Promise<Client> {
     const persistenceModel = ClientMapper.toPersistence(data);
-    const newEntity = await this.usersRepository.save(
-      this.usersRepository.create(persistenceModel),
+    const newEntity = await this.clientsRepository.save(
+      this.clientsRepository.create(persistenceModel),
     );
     return ClientMapper.toDomain(newEntity);
   }
@@ -26,7 +26,7 @@ export class ClientsRelationalRepository implements ClientsRepository {
   async findOne(
     fields: EntityCondition<Client>,
   ): Promise<NullableType<Client>> {
-    const entity = await this.usersRepository
+    const entity = await this.clientsRepository
       .createQueryBuilder('client')
       .where({
         id: fields.id,
@@ -35,5 +35,9 @@ export class ClientsRelationalRepository implements ClientsRepository {
       .getOne();
 
     return entity ? ClientMapper.toDomain(entity) : null;
+  }
+
+  async delete(id: Client['id']): Promise<void> {
+    await this.clientsRepository.delete(id);
   }
 }

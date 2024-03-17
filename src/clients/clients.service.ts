@@ -20,4 +20,8 @@ export class ClientsService {
   findOne(fields: EntityCondition<Client>): Promise<NullableType<Client>> {
     return this.clientsRepository.findOne(fields);
   }
+
+  async delete(id: Client['id']): Promise<void> {
+    await this.clientsRepository.delete(id);
+  }
 }
