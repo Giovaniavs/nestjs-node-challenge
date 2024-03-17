@@ -40,4 +40,25 @@ export class ClientsRelationalRepository implements ClientsRepository {
   async delete(id: Client['id']): Promise<void> {
     await this.clientsRepository.delete(id);
   }
+
+  async update(id: Client['id'], payload: Partial<Client>): Promise<Client> {
+    const entity = await this.clientsRepository.findOne({
+      where: { id: id.toString() },
+    });
+
+    if (!entity) {
+      throw new Error('User not found');
+    }
+
+    const updatedEntity = await this.clientsRepository.save(
+      this.clientsRepository.create(
+        ClientMapper.toPersistence({
+          ...ClientMapper.toDomain(entity),
+          ...payload,
+        }),
+      ),
+    );
+
+    return ClientMapper.toDomain(updatedEntity);
+  }
 }

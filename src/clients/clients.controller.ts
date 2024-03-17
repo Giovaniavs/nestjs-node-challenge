@@ -9,6 +9,7 @@ import {
   SerializeOptions,
   Get,
   Delete,
+  Patch,
 } from '@nestjs/common';
 import { ApiTags, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
 import { ClientRegisterDto } from './dto/client-register.dto';
@@ -19,6 +20,7 @@ import { NullableType } from 'src/utils/types/nullable.type';
 import { Roles } from 'src/roles/roles.decorator';
 import { RoleEnum } from 'src/roles/roles.enum';
 import { RolesGuard } from 'src/roles/roles.guard';
+import { ClientUpdateDto } from './dto/client-update.dto';
 
 @ApiBearerAuth()
 @Roles(RoleEnum.admin)
@@ -65,5 +67,22 @@ export class ClientsController {
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: Client['id']): Promise<void> {
     return this.clientsService.delete(id);
+  }
+
+  @SerializeOptions({
+    groups: ['admin'],
+  })
+  @Patch(':id')
+  @HttpCode(HttpStatus.OK)
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+  })
+  update(
+    @Param('id') id: Client['id'],
+    @Body() updateProfileDto: ClientUpdateDto,
+  ): Promise<Client | null> {
+    return this.clientsService.update(id, updateProfileDto);
   }
 }
