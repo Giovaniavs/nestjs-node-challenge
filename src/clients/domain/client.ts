@@ -10,4 +10,8 @@ export class Client {
   user?: User | null;
   createdAt: Date;
   updatedAt: Date;
+
+  constructor(data?: Partial<Client>) {
+    Object.assign(this, data);
+  }
 }

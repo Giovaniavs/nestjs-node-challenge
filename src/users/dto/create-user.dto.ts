@@ -21,13 +21,21 @@ export class CreateUserDto {
 
   socialId?: string | null;
 
-  @ApiProperty({ example: 'John' })
+  @ApiProperty({ example: 'Alan' })
   @IsNotEmpty()
   firstName: string | null;
 
-  @ApiProperty({ example: 'Doe' })
+  @ApiProperty({ example: 'Turing' })
   @IsNotEmpty()
   lastName: string | null;
+
+  @ApiProperty({ example: 'Rua Teste' })
+  @IsNotEmpty()
+  address?: string | null;
+
+  @ApiProperty({ example: '+558132258337' })
+  @IsNotEmpty()
+  contact?: string | null;
 
   @ApiPropertyOptional({ type: () => FileDto })
   @IsOptional()

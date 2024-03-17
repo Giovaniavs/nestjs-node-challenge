@@ -3,7 +3,7 @@ import { IsNumber } from 'class-validator';
 import { Role } from '../domain/role';
 
 export class RoleDto implements Role {
-  @ApiProperty()
+  @ApiProperty({ example: 2 })
   @IsNumber()
   id: number;
 }

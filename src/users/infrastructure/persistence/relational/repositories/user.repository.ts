@@ -9,19 +9,38 @@ import { FilterUserDto, SortUserDto } from '../../../../dto/query-user.dto';
 import { User } from '../../../../domain/user';
 import { UserRepository } from '../../user.repository';
 import { UserMapper } from '../mappers/user.mapper';
+import { ClientEntity } from 'src/clients/infrastructure/persistence/relational/entities/client.entity';
+import { ClientMapper } from 'src/clients/infrastructure/persistence/relational/mappers/client.mapper';
+import { Client } from 'src/clients/domain/client';
 
 @Injectable()
 export class UsersRelationalRepository implements UserRepository {
   constructor(
     @InjectRepository(UserEntity)
     private readonly usersRepository: Repository<UserEntity>,
+    @InjectRepository(ClientEntity)
+    private readonly clientsRepository: Repository<ClientEntity>,
   ) {}
 
   async create(data: User): Promise<User> {
+    const clientModel = new Client({
+      contact: data['contact'],
+      address: data['address'],
+    });
+
     const persistenceModel = UserMapper.toPersistence(data);
+    const persistenceClientModel = ClientMapper.toPersistence(clientModel);
+
+    const newClientEntity = await this.clientsRepository.save(
+      this.clientsRepository.create(persistenceClientModel),
+    );
+
+    persistenceModel.client = newClientEntity;
+
     const newEntity = await this.usersRepository.save(
       this.usersRepository.create(persistenceModel),
     );
+
     return UserMapper.toDomain(newEntity);
   }
 

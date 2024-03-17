@@ -3,7 +3,7 @@ import { FileType } from '../domain/file';
 import { IsString } from 'class-validator';
 
 export class FileDto implements FileType {
-  @ApiProperty()
+  @ApiProperty({ example: 'upload-a-file-and-paste-the-id-here' })
   @IsString()
   id: string;
 

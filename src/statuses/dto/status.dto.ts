@@ -3,7 +3,7 @@ import { Status } from '../domain/status';
 import { IsNumber } from 'class-validator';
 
 export class StatusDto implements Status {
-  @ApiProperty()
+  @ApiProperty({ example: 2 })
   @IsNumber()
   id: number;
 }
