@@ -22,10 +22,8 @@ export class AuthRegisterLoginDto {
   lastName: string;
 
   @ApiProperty({ example: '+558192308553' })
-  @IsNotEmpty()
-  contact: string;
+  contact?: string | null;
 
   @ApiProperty({ example: 'Rua Ourém, 227' })
-  @IsNotEmpty()
-  address: string;
+  address?: string | null;
 }
