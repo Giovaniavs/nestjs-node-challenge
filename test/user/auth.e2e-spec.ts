@@ -14,6 +14,8 @@ describe('Auth Module', () => {
   const newUserLastName = `E2E`;
   const newUserEmail = `User.${Date.now()}@example.com`;
   const newUserPassword = `secret`;
+  const newUserContact = 'contact';
+  const newUserAddress = 'address';
 
   describe('Registration', () => {
     it('should fail with exists email: /api/v1/auth/email/register (POST)', () => {
@@ -39,6 +41,8 @@ describe('Auth Module', () => {
           password: newUserPassword,
           firstName: newUserFirstName,
           lastName: newUserLastName,
+          contact: newUserContact,
+          address: newUserAddress,
         })
         .expect(204);
     });

@@ -30,11 +30,9 @@ export class CreateUserDto {
   lastName: string | null;
 
   @ApiProperty({ example: 'Rua Teste' })
-  @IsNotEmpty()
   address?: string | null;
 
   @ApiProperty({ example: '+558132258337' })
-  @IsNotEmpty()
   contact?: string | null;
 
   @ApiPropertyOptional({ type: () => FileDto })

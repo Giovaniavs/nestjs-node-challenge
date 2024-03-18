@@ -24,8 +24,8 @@ export class UsersRelationalRepository implements UserRepository {
 
   async create(data: User): Promise<User> {
     const clientModel = new Client({
-      contact: data['contact'],
-      address: data['address'],
+      contact: data['contact'] ?? '',
+      address: data['address'] ?? '',
     });
 
     const persistenceModel = UserMapper.toPersistence(data);
