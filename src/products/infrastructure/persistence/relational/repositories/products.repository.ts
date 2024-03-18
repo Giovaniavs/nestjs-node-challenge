@@ -36,6 +36,14 @@ export class ProductsRelationalRepository implements ProductsRepository {
   // }
 
   async delete(id: Product['id']): Promise<void> {
+    const entity = await this.productsRepository.findOne({
+      where: { id: id.toString() },
+    });
+
+    if (!entity) {
+      throw new Error('Product not found');
+    }
+
     await this.productsRepository.delete(id);
   }
 
