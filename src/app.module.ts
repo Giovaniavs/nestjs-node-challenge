@@ -23,6 +23,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from './database/mongoose-config.service';
 import { DatabaseConfig } from './database/config/database-config.type';
 import { ClientsModule } from './clients/clients.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -72,6 +73,7 @@ import { ClientsModule } from './clients/clients.module';
     MailerModule,
     HomeModule,
     ClientsModule,
+    ProductsModule,
   ],
 })
 export class AppModule {}
