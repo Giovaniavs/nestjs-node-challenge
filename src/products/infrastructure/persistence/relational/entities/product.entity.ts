@@ -6,9 +6,12 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { EntityRelationalHelper } from 'src/utils/relational-entity-helper';
+import { Product } from 'src/products/domain/product';
 
-@Entity()
-export class Product extends EntityRelationalHelper {
+@Entity({
+  name: 'Product',
+})
+export class ProductEntity extends EntityRelationalHelper implements Product {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
