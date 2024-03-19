@@ -47,7 +47,7 @@ export class ClientsRelationalRepository implements ClientsRepository {
     });
 
     if (!entity) {
-      throw new Error('User not found');
+      throw new Error('Client not found');
     }
 
     const updatedEntity = await this.clientsRepository.save(
