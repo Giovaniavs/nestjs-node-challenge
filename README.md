@@ -51,7 +51,7 @@ git clone https://github.com/Giovaniavs/nestjs-node-challenge.git
 ```
 
 5. Open http://localhost:3000
-6. Deployed version http://3.80.204.158:3000/
+6. Deployed version http://ec2-3-80-202-206.compute-1.amazonaws.com:3000/
 
 ## Features
 - [x] Authentication
