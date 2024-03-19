@@ -53,7 +53,19 @@ git clone https://github.com/Giovaniavs/nestjs-node-challenge.git
 5. Open http://localhost:3000
 
 ## Features
-
+- [x] Authentication
+- [x] Permission/Protected Routes
+- [x] Email confirmation
+- [x] Users CRUD
+- [x] Clients CRUD
+- [x] Products CRUD
+- [x] Swagger documentation
+- [x] S3 Bucket integration
+- [x] EC2 Server deployed
+- [x] Clean Architecture
+- [] Orders Management
+- [] Custom Reports
+- [] App Crash Monitoring           
 
 <p align="right">
  Developed by Giovani Albuquerque
