@@ -3,6 +3,8 @@ import { DeepPartial } from 'typeorm';
 import { ProductRegisterDto } from './dto/product-register.dto';
 import { Product } from './domain/product';
 import { ProductsRepository } from './infrastructure/persistence/products.repository';
+import { ProductFindDto } from './dto/product-find.dto';
+import { IPaginationOptions } from 'src/utils/types/pagination-options';
 
 @Injectable()
 export class ProductsService {
@@ -16,9 +18,18 @@ export class ProductsService {
     return this.producsRepository.create(clonedPayload);
   }
 
-  // findOne(fields: EntityCondition<Product>): Promise<NullableType<Product>> {
-  //   return this.producsRepository.findOne(fields);
-  // }
+  findManyWithFilter({
+    filterOptions,
+    paginationOptions,
+  }: {
+    filterOptions?: ProductFindDto | null;
+    paginationOptions: IPaginationOptions;
+  }): Promise<Product[]> {
+    return this.producsRepository.findManyWithFilter({
+      filterOptions,
+      paginationOptions,
+    });
+  }
 
   async delete(id: Product['id']): Promise<void> {
     await this.producsRepository.delete(id);
