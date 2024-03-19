@@ -34,7 +34,7 @@ git clone https://github.com/Giovaniavs/nestjs-node-challenge.git
 
 2. Create a .env file with these credential availeble at: https://github.com/brocoders/nestjs-boilerplate/blob/main/env-example-relational
 
-3 In you .env:
+3. In you .env:
 
 ```bash
   Change DATABASE_HOST=postgres to DATABASE_HOST=localhost
@@ -63,9 +63,9 @@ git clone https://github.com/Giovaniavs/nestjs-node-challenge.git
 - [x] S3 Bucket integration
 - [x] EC2 Server deployed
 - [x] Clean Architecture
-- [] Orders Management
-- [] Custom Reports
-- [] App Crash Monitoring           
+- [ ] Orders Management
+- [ ] Custom Reports
+- [ ] App Crash Monitoring           
 
 <p align="right">
  Developed by Giovani Albuquerque
