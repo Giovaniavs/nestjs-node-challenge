@@ -1,6 +1,6 @@
 # REST API Ecommerce NestJS challenge
 
-NestJS challenge of a selective process to be made within a week. The system is divided into User, Client, Product, Order, Order Items, and Selling Reports entities containing different types of relationships. Also, the main features are Authentication, Permission, and Clients and Products Management. The API is connected with AWS S3 and deployed on EC2, based on a Clean architecture and documented on Swagger.
+NestJS challenge of a selective process to be made within a week. The system is divided into User, Client, Product, Order, Order Items, and Selling Reports entities containing different types of relationships. The main features are Authentication, Permission, and Clients and Products Management. The API is connected with AWS S3 and deployed on EC2, based on a Clean architecture and documented on Swagger.
 
 ## Table of Contents
 
@@ -34,13 +34,14 @@ git clone https://github.com/Giovaniavs/nestjs-node-challenge.git
 
 2. Create a .env file with these credential availeble at: https://github.com/brocoders/nestjs-boilerplate/blob/main/env-example-relational
 
-3. Run the following commands:
+3 In you .env:
 
-3.1 In you .env:
+```bash
   Change DATABASE_HOST=postgres to DATABASE_HOST=localhost
   Change MAIL_HOST=maildev to MAIL_HOST=localhost
+```
 
-3.2 
+4. Open the terminal and run:
 
 ```bash
   docker compose up -d postgres adminer maildev
@@ -49,7 +50,7 @@ git clone https://github.com/Giovaniavs/nestjs-node-challenge.git
   npm run start:dev
 ```
 
-4. Open http://localhost:3000
+5. Open http://localhost:3000
 
 ## Features
 
